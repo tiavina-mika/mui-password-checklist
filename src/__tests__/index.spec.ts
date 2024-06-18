@@ -1,40 +1,26 @@
 // import {describe, expect, test} from '@jest/globals';
-import { getPasswordStrengthResult } from '../PasswordStrengthInput';
+
+import { getPasswordScoreAndCriteria } from "../utils";
 
 // ------------ default options ------------ //
-describe('check default labels', () => {
-  test('tooWeak label', () => {
-    expect(getPasswordStrengthResult('tooWeak').label).toBe('Too weak');
+describe('check password', () => {
+  test('check min length', () => {
+    const { allChecksPassed, errorMessages } = getPasswordScoreAndCriteria('abcde')
+    expect(allChecksPassed).toBe(false);
+    const currentPassed = errorMessages.find((error) => error.key === 'lowerCase');
+    expect(currentPassed?.pass).toBe(true);
   });
 
-  test('weak label', () => {
-    expect(getPasswordStrengthResult('weak').label).toBe('Weak');
+  test('check two passed check', () => {
+    const { allChecksPassed, errorMessages } = getPasswordScoreAndCriteria('abcde8')
+    expect(allChecksPassed).toBe(false);
+    const passedChecks = errorMessages.filter((error) => error.key && ['lowerCase', 'number'].includes(error.key));
+    expect(passedChecks?.length).toBe(2);
   });
 
-  test('medium label', () => {
-    expect(getPasswordStrengthResult('medium').label).toBe('Okay');
-  });
-
-  test('strong label', () => {
-    expect(getPasswordStrengthResult('strong').label).toBe('Strong');
-  });
-});
-
-// ------------ custom options ------------ //
-describe('check override labels', () => {
-  test('custom label', () => {
-    const option = getPasswordStrengthResult('tooWeak', { tooWeak: { label: 'Too weak 2' } });
-    expect(option.label).toBe('Too weak 2');
-  });
-
-  test('custom color', () => {
-    const option = getPasswordStrengthResult('medium', { medium: { color: 'red' } });
-    expect(option.color).toBe('red');
-  });
-
-  test('custom color and label', () => {
-    const option = getPasswordStrengthResult('strong', { strong: { color: 'red', label: 'Strong 2' } });
-    expect(option.label).toBe('Strong 2');
-    expect(option.color).toBe('red');
+  test('check all checks passed', () => {
+    const { allChecksPassed, errorMessages } = getPasswordScoreAndCriteria('abcde8=F')
+    expect(allChecksPassed).toBe(true);
+    expect(errorMessages?.length).toBe(5);
   });
 });

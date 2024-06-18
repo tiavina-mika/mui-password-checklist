@@ -22,6 +22,7 @@ type Options = {
 export type PasswordsComplexityPass = {
   pass: boolean;
   message: string;
+  key?: string;
 };
 
 export type ErrorMessages = {
@@ -66,6 +67,7 @@ const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputP
     const { value } = event.target;
 
     const result = getPasswordScoreAndCriteria(value, errorMessages);
+    console.log(value, result);
     const newErrors = result.errorMessages || [];
     setErrors(newErrors);
 

@@ -1,11 +1,13 @@
 import { ErrorMessages, PasswordsComplexityPass } from "./PasswordStrengthInput";
 
-type ComplexPasswordErrors = {
-  [key: number]: PasswordsComplexityPass;
-}
+type ComplexPasswordErrors = Record<'minLength' | 'lowerCase' | 'upperCase' | 'number' | 'specialChar', PasswordsComplexityPass>
 
+type Checks = {
+  pass: boolean;
+  key: keyof ComplexPasswordErrors;
+}
 type PasswordScoreAndCriteria = {
-  errorMessages?: PasswordsComplexityPass[];
+  errorMessages: PasswordsComplexityPass[];
   allChecksPassed: boolean;
 }
 export const getPasswordScoreAndCriteria = (password: string, message?: ErrorMessages): PasswordScoreAndCriteria => {
@@ -17,40 +19,56 @@ export const getPasswordScoreAndCriteria = (password: string, message?: ErrorMes
     specialChar = "Must contain at least one special character"
   } = message || {};
 
-  if (!password) return { allChecksPassed: false};
+  if (!password) return { allChecksPassed: false, errorMessages: [] };
 
   /**
    * all criteria checks
    */
-  const checks: boolean[] = [
+  const checks: Checks[] = [
     // password length
-    password.length > 8,
+    {
+      pass: password.length >= 8,
+      key: 'minLength'
+    },
     // password has lowercase
-    /[a-z]/.test(password),
+    {
+      pass: /[a-z]/.test(password),
+      key: 'lowerCase'
+    },
     // password has uppercase
-    /[A-Z]/.test(password),
+    {
+      pass: /[A-Z]/.test(password),
+      key: 'upperCase'
+    },
     // password has number
-    /\d/.test(password),
+    {
+      pass: /\d/.test(password),
+      key: 'number'
+    },
     // password has special character
-    /[`!@#$%^&*()_\-+=[\]{};':"\\|,.<>/?~ ]/.test(password),
+    {
+      pass: /[`!@#$%^&*()_\-+=[\]{};':"\\|,.<>/?~ ]/.test(password),
+      key: 'specialChar'
+    }
   ];
 
   const errorMessages: ComplexPasswordErrors = {
-    1: { pass: false, message: minLength },
-    2: { pass: false, message: lowerCase },
-    3: { pass: false, message: upperCase },
-    4: { pass: false, message: number },
-    5: { pass: false, message: specialChar },
+    minLength: { pass: false, message: minLength },
+    lowerCase: { pass: false, message: lowerCase },
+    upperCase: { pass: false, message: upperCase },
+    number: { pass: false, message: number },
+    specialChar: { pass: false, message: specialChar },
   };
 
   let allChecksPassed: boolean = false;
 
-  checks.forEach((check: boolean, index: number) => {
-    if (errorMessages[index + 1]) {
-      if (check) {
-        errorMessages[index + 1] = { ...errorMessages[index + 1], pass: true };
+  checks.forEach((check: Checks) => {
+    if (errorMessages[check.key]) {
+      if (check.pass) {
+        errorMessages[check.key] = { ...errorMessages[check.key], pass: true, key: check.key };
         allChecksPassed = true;
       } else {
+        errorMessages[check.key] = { ...errorMessages[check.key], key: check.key };
         allChecksPassed = false;
       }
     }
