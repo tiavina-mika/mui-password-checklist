@@ -1,22 +1,36 @@
 import { ErrorMessages, PasswordsComplexityPass } from "./PasswordStrengthInput";
 
-type ComplexPasswordErrors = Record<'minLength' | 'lowerCase' | 'upperCase' | 'number' | 'specialChar', PasswordsComplexityPass>
+export type CheckPasswordOptions = {
+  minLength?: number;
+  allowedSpecialChar?: string;
+};
+
+type DefaultErrorOption = Record<'minLength' | 'lowerCase' | 'upperCase' | 'number', PasswordsComplexityPass>;
+type ErrorOption = DefaultErrorOption & Record<'specialCharacters', PasswordsComplexityPass>;
 
 type Checks = {
   pass: boolean;
-  key: keyof ComplexPasswordErrors;
+  key: keyof ErrorOption;
 }
 type PasswordCheckList = {
   errorMessages: PasswordsComplexityPass[];
   allChecksPassed: boolean;
 }
-export const getPasswordChecklist = (password: string, message?: ErrorMessages): PasswordCheckList => {
+export const getPasswordChecklist = (password: string, message?: ErrorMessages, options?: CheckPasswordOptions): PasswordCheckList => {
   const {
-    minLength = "Must be at least 8 characters",
+    minLength : minLengthMessage,
+    allowedSpecialChar
+  } = options || {
+    minLength: 8,
+    allowedSpecialChar: "!@#$%^&*(),.?\":{}|<>\\[\\]\\\\/`~;'_+=-"
+  };
+
+  const {
+    minLength = `Must be at least ${minLengthMessage} characters`,
     lowerCase = "Must contain at least one lowercase letter",
     upperCase = "Must contain at least one uppercase letter",
     number = "Must contain at least one number",
-    specialChar = "Must contain at least one special character"
+    specialCharacters = "Must contain at least one special character"
   } = message || {};
 
   if (!password) return { allChecksPassed: false, errorMessages: [] };
@@ -45,30 +59,34 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages):
       pass: /\d/.test(password),
       key: 'number'
     },
-    // password has special character
-    {
-      pass: /[`!@#$%^&*()_\-+=[\]{};':"\\|,.<>/?~ ]/.test(password),
-      key: 'specialChar'
-    }
   ];
 
-  const errorMessages: ComplexPasswordErrors = {
+  const errorMessages: DefaultErrorOption = {
     minLength: { pass: false, message: minLength },
     lowerCase: { pass: false, message: lowerCase },
     upperCase: { pass: false, message: upperCase },
     number: { pass: false, message: number },
-    specialChar: { pass: false, message: specialChar },
   };
+
+  // password has special character
+  if (allowedSpecialChar) {
+    checks.push({
+      pass: new RegExp(`[${allowedSpecialChar}]`).test(password),
+      key: "specialCharacters",
+    });
+
+    (errorMessages as ErrorOption).specialCharacters = { pass: false, message: specialCharacters };
+  }
 
   let allChecksPassed: boolean = false;
 
   checks.forEach((check: Checks) => {
-    if (errorMessages[check.key]) {
+    if ((errorMessages as ErrorOption)[check.key]) {
       if (check.pass) {
-        errorMessages[check.key] = { ...errorMessages[check.key], pass: true, key: check.key };
+        (errorMessages as ErrorOption)[check.key] = { ...(errorMessages as ErrorOption)[check.key], pass: true, key: check.key };
         allChecksPassed = true;
       } else {
-        errorMessages[check.key] = { ...errorMessages[check.key], key: check.key };
+        (errorMessages as ErrorOption)[check.key] = { ...(errorMessages as ErrorOption)[check.key], key: check.key };
         allChecksPassed = false;
       }
     }

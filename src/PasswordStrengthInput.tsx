@@ -4,20 +4,9 @@ import { IconButton, TextFieldProps, TextField, Theme, useTheme, List, ListItem,
 
 import VisibilityOff from './icons/VisibilityOff';
 import Visibility from './icons/Visibility';
-import { getPasswordChecklist } from './utils';
+import { CheckPasswordOptions, getPasswordChecklist } from './utils';
 import Check from './icons/Check';
 import Close from './icons/Close';
-
-type Strength ={
-  label?: string;
-  color?: string;
-}
-type Options = {
-  tooWeak?: Strength;
-  weak?: Strength;
-  medium?: Strength;
-  strong?: Strength;
-}
 
 export type PasswordsComplexityPass = {
   pass: boolean;
@@ -30,12 +19,12 @@ export type ErrorMessages = {
   lowerCase: string;
   upperCase: string;
   number: string;
-  specialChar: string;
+  specialCharacters: string;
 }
 
 export type PasswordStrengthInputProps = {
   className?: string;
-  options?: Options;
+  options?: CheckPasswordOptions;
   inactiveColor?: string;
   barClassName?: string;
   strengthLabelClassName?: string;
@@ -66,7 +55,7 @@ const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputP
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    const result = getPasswordChecklist(value, errorMessages);
+    const result = getPasswordChecklist(value, errorMessages, options);
     console.log(value, result);
     const newErrors = result.errorMessages || [];
     setErrors(newErrors);
