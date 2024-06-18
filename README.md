@@ -1,4 +1,4 @@
-# mui-password-strength-input
+# mui-password-checklist
 
 <p align="center">
 
@@ -6,22 +6,22 @@ A <a href="https://mui.com/material-ui/getting-started/overview/">Material-UI</a
 </p>
 
 
-![Gif](https://github.com/tiavina-mika/mui-password-strength-input/blob/main/screenshots/example.gif)
+![Gif](https://github.com/tiavina-mika/mui-password-checklist/blob/main/screenshots/example.gif)
 
 ## Installation
 
 ```shell
 
-npm install mui-password-strength-input
+npm install mui-password-checklist
 
 ```
 or
 ```shell
 
-yarn add mui-password-strength-input
+yarn add mui-password-checklist
 
 ```
-Please note that [`@mui/material`](https://mui.com/material-ui/getting-started/installation/) (and their `@emotion/` peers) are peer dependencies, meaning you should ensure they are installed before installing `mui-password-strength-input`.
+Please note that [`@mui/material`](https://mui.com/material-ui/getting-started/installation/) (and their `@emotion/` peers) are peer dependencies, meaning you should ensure they are installed before installing `mui-password-checklist`.
 
 ```shell
 npm install @mui/material @emotion/react @emotion/styled
@@ -36,7 +36,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 ### Simple usage
 
 ```tsx
-import PasswordStrengthInput from 'mui-password-strength-input';
+import PasswordStrengthInput from 'mui-password-checklist';
 import { useState } from "react";
 
 function App() {
@@ -118,7 +118,7 @@ function App() {
   />
 ```
 
-See [`example/App.tsx`](https://github.com/tiavina-mika/mui-password-strength-input/tree/main/example) for a more example of using `PasswordStrengthInput`.
+See [`example/App.tsx`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for a more example of using `PasswordStrengthInput`.
 
 ## Props
 
@@ -134,4 +134,4 @@ See [`example/App.tsx`](https://github.com/tiavina-mika/mui-password-strength-in
 
 ## Contributing
 
-Get started [here](https://github.com/tiavina-mika/mui-password-strength-input/blob/main/CONTRIBUTING.md).
+Get started [here](https://github.com/tiavina-mika/mui-password-checklist/blob/main/CONTRIBUTING.md).
