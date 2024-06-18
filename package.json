@@ -1,6 +1,6 @@
 {
-  "name": "mui-password-strength-input",
-  "version": "0.1.7",
+  "name": "mui-password-checklist",
+  "version": "0.0.0",
   "description": "A Material-UI password input with password strength indicator",
   "keywords": [
     "mui",
@@ -12,9 +12,9 @@
     "password-strength-bar",
     "mui-password"
   ],
-  "homepage": "https://github.com/tiavina-mika/mui-password-strength-input",
+  "homepage": "https://github.com/tiavina-mika/mui-password-checklist",
   "bugs": {
-    "url": "https://github.com/tiavina-mika/mui-password-strength-input/issues"
+    "url": "https://github.com/tiavina-mika/mui-password-checklist/issues"
   },
   "author": {
     "name": "Tiavina Michael Ralainirina",
