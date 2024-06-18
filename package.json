@@ -1,16 +1,17 @@
 {
   "name": "mui-password-checklist",
   "version": "0.0.0",
-  "description": "A Material-UI password input with password strength indicator",
+  "description": "A Material-UI password input with password strength checklist",
   "keywords": [
     "mui",
     "password",
-    "check-passowrd-complexity",
+    "check-password-complexity",
     "password-strength",
     "material-ui",
     "password-input",
     "password-strength-bar",
-    "mui-password"
+    "mui-password",
+    "react"
   ],
   "homepage": "https://github.com/tiavina-mika/mui-password-checklist",
   "bugs": {
