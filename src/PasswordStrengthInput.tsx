@@ -24,6 +24,13 @@ export type PasswordsComplexityPass = {
   message: string;
 };
 
+export type ErrorMessages = {
+  minLength: string;
+  lowerCase: string;
+  upperCase: string;
+  number: string;
+  specialChar: string;
+}
 
 export type PasswordStrengthInputProps = {
   className?: string;
@@ -33,6 +40,7 @@ export type PasswordStrengthInputProps = {
   strengthLabelClassName?: string;
   hidePasswordIcon?: ReactNode;
   showPasswordIcon?: ReactNode;
+  errorMessages?: ErrorMessages;
 };
 
 
@@ -44,6 +52,7 @@ const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputP
   strengthLabelClassName,
   hidePasswordIcon,
   showPasswordIcon,
+  errorMessages,
   ...rest
 }, ref) => {
   const [errors, setErrors] = useState<PasswordsComplexityPass[]>([]);
@@ -56,7 +65,8 @@ const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputP
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    const newErrors = getPasswordScoreAndCriteria(value).errorMessages || [];
+    const result = getPasswordScoreAndCriteria(value, errorMessages);
+    const newErrors = result.errorMessages || [];
     setErrors(newErrors);
 
     rest.onChange?.(event);

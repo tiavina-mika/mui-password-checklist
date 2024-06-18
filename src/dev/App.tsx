@@ -9,6 +9,13 @@ const App = () => {
       <Container>
         <PasswordStrengthInput
           className='input'
+          errorMessages={{
+            minLength: 'Devrait contenir au moins 8 caractères',
+            lowerCase: 'Devrait contenir au moins une lettre minuscule',
+            upperCase: 'Devrait contenir au moins une lettre majuscule',
+            number: 'Devrait contenir au moins un chiffre',
+            specialChar: 'Devrait contenir au moins un caractère spécial',
+          }}
           options={{
             tooWeak: {
               label: 'Too weak 2',

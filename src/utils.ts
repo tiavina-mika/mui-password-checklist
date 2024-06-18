@@ -1,13 +1,21 @@
-import { PasswordsComplexityPass } from "./PasswordStrengthInput";
+import { ErrorMessages, PasswordsComplexityPass } from "./PasswordStrengthInput";
 
 type ComplexPasswordErrors = {
   [key: number]: PasswordsComplexityPass;
 }
+
 type PasswordScoreAndCriteria = {
   errorMessages?: PasswordsComplexityPass[];
   allChecksPassed: boolean;
 }
-export const getPasswordScoreAndCriteria = (password: string): PasswordScoreAndCriteria => {
+export const getPasswordScoreAndCriteria = (password: string, message?: ErrorMessages): PasswordScoreAndCriteria => {
+  const {
+    minLength = "Must be at least 8 characters",
+    lowerCase = "Must contain at least one lowercase letter",
+    upperCase = "Must contain at least one uppercase letter",
+    number = "Must contain at least one number",
+    specialChar = "Must contain at least one special character"
+  } = message || {};
 
   if (!password) return { allChecksPassed: false};
 
@@ -28,11 +36,11 @@ export const getPasswordScoreAndCriteria = (password: string): PasswordScoreAndC
   ];
 
   const errorMessages: ComplexPasswordErrors = {
-    1: { pass: false, message: "Must be at least 8 characters" },
-    2: { pass: false, message: "Must contain at least one lowercase letter" },
-    3: { pass: false, message: "Must contain at least one uppercase letter" },
-    4: { pass: false, message: "Must contain at least one number" },
-    5: { pass: false, message: "Must contain at least one special character" },
+    1: { pass: false, message: minLength },
+    2: { pass: false, message: lowerCase },
+    3: { pass: false, message: upperCase },
+    4: { pass: false, message: number },
+    5: { pass: false, message: specialChar },
   };
 
   let allChecksPassed: boolean = false;
