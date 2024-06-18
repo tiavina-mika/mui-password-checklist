@@ -8,7 +8,7 @@ export type CheckPasswordOptions = {
 type DefaultErrorOption = Record<'minLength' | 'lowerCase' | 'upperCase' | 'number', PasswordsComplexityPass>;
 type ErrorOption = DefaultErrorOption & Record<'specialCharacters', PasswordsComplexityPass>;
 
-type Checks = {
+type Check = {
   pass: boolean;
   key: keyof ErrorOption;
 }
@@ -36,7 +36,7 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
   /**
    * all criteria checks
    */
-  const checks: Checks[] = [
+  const checks: Check[] = [
     // password length
     {
       pass: password.length >= passwordMinLength,
@@ -78,7 +78,7 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
 
   let allChecksPassed: boolean = false;
 
-  checks.forEach((check: Checks) => {
+  checks.forEach((check: Check) => {
     if ((errorMessages as ErrorOption)[check.key]) {
       // check if the password passes the criteria
       if (check.pass) {
