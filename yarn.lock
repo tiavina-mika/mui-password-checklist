@@ -6916,9 +6916,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mui-password-strength-input@workspace:.":
+"mui-password-checklist@workspace:.":
   version: 0.0.0-use.local
-  resolution: "mui-password-strength-input@workspace:."
+  resolution: "mui-password-checklist@workspace:."
   dependencies:
     "@emotion/react": "npm:^11.11.3"
     "@emotion/styled": "npm:^11.11.5"
