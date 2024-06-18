@@ -6,11 +6,11 @@ type Checks = {
   pass: boolean;
   key: keyof ComplexPasswordErrors;
 }
-type PasswordScoreAndCriteria = {
+type PasswordCheckList = {
   errorMessages: PasswordsComplexityPass[];
   allChecksPassed: boolean;
 }
-export const getPasswordScoreAndCriteria = (password: string, message?: ErrorMessages): PasswordScoreAndCriteria => {
+export const getPasswordChecklist = (password: string, message?: ErrorMessages): PasswordCheckList => {
   const {
     minLength = "Must be at least 8 characters",
     lowerCase = "Must contain at least one lowercase letter",

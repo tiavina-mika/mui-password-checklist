@@ -4,7 +4,7 @@ import { IconButton, TextFieldProps, TextField, Theme, useTheme, List, ListItem,
 
 import VisibilityOff from './icons/VisibilityOff';
 import Visibility from './icons/Visibility';
-import { getPasswordScoreAndCriteria } from './utils';
+import { getPasswordChecklist } from './utils';
 import Check from './icons/Check';
 import Close from './icons/Close';
 
@@ -66,7 +66,7 @@ const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputP
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    const result = getPasswordScoreAndCriteria(value, errorMessages);
+    const result = getPasswordChecklist(value, errorMessages);
     console.log(value, result);
     const newErrors = result.errorMessages || [];
     setErrors(newErrors);
