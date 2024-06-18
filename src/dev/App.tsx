@@ -1,5 +1,5 @@
 import { Container, ThemeProvider, createTheme } from '@mui/material';
-import PasswordStrengthInput from '../PasswordStrengthInput';
+import PasswordChecklist from '../PasswordChecklist';
 
 const theme = createTheme();
 
@@ -7,7 +7,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <PasswordStrengthInput
+        <PasswordChecklist
           className='input'
           errorMessages={{
             minLength: 'Devrait contenir au moins 8 caractères',

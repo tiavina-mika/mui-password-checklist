@@ -1,4 +1,4 @@
-import { ErrorMessages, PasswordsComplexityPass } from "./PasswordStrengthInput";
+import { ErrorMessages, PasswordsComplexityPass } from "./PasswordChecklist";
 
 export type CheckPasswordOptions = {
   minLength?: number;
@@ -16,21 +16,19 @@ type PasswordCheckList = {
   errorMessages: PasswordsComplexityPass[];
   allChecksPassed: boolean;
 }
-export const getPasswordChecklist = (password: string, message?: ErrorMessages, options?: CheckPasswordOptions): PasswordCheckList => {
-  const {
-    minLength : minLengthMessage,
-    allowedSpecialChar
-  } = options || {
-    minLength: 8,
-    allowedSpecialChar: "!@#$%^&*(),.?\":{}|<>\\[\\]\\\\/`~;'_+=-"
-  };
 
+export const getPasswordChecklist = (password: string, message?: ErrorMessages, options?: CheckPasswordOptions): PasswordCheckList => {
+  // -------------- default options -------------- //
+  const passwordMinLength = options?.minLength || 8;
+  const allowedSpecialChar = options?.allowedSpecialChar || "!@#$%^&*(),.?\":{}|<>\\[\\]\\\\/`~;'_+=-";
+
+  // ----------- default error messages ---------- //
   const {
-    minLength = `Must be at least ${minLengthMessage} characters`,
-    lowerCase = "Must contain at least one lowercase letter",
-    upperCase = "Must contain at least one uppercase letter",
-    number = "Must contain at least one number",
-    specialCharacters = "Must contain at least one special character"
+    minLength = `Must be at least ${passwordMinLength} characters`,
+    lowerCase = 'Must contain at least one lowercase letter',
+    upperCase = 'Must contain at least one uppercase letter',
+    number = 'Must contain at least one number',
+    specialCharacters = 'Must contain at least one special character'
   } = message || {};
 
   if (!password) return { allChecksPassed: false, errorMessages: [] };
@@ -41,7 +39,7 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
   const checks: Checks[] = [
     // password length
     {
-      pass: password.length >= 8,
+      pass: password.length >= passwordMinLength,
       key: 'minLength'
     },
     // password has lowercase
@@ -83,7 +81,11 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
   checks.forEach((check: Checks) => {
     if ((errorMessages as ErrorOption)[check.key]) {
       if (check.pass) {
-        (errorMessages as ErrorOption)[check.key] = { ...(errorMessages as ErrorOption)[check.key], pass: true, key: check.key };
+        (errorMessages as ErrorOption)[check.key] = {
+          ...(errorMessages as ErrorOption)[check.key],
+          pass: true,
+          key: check.key
+        };
         allChecksPassed = true;
       } else {
         (errorMessages as ErrorOption)[check.key] = { ...(errorMessages as ErrorOption)[check.key], key: check.key };

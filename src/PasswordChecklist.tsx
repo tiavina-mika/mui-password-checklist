@@ -25,21 +25,15 @@ export type ErrorMessages = {
 export type PasswordStrengthInputProps = {
   className?: string;
   options?: CheckPasswordOptions;
-  inactiveColor?: string;
-  barClassName?: string;
-  strengthLabelClassName?: string;
   hidePasswordIcon?: ReactNode;
   showPasswordIcon?: ReactNode;
   errorMessages?: ErrorMessages;
 };
 
 
-const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputProps & TextFieldProps>(({
-  inactiveColor,
+const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordStrengthInputProps & TextFieldProps>(({
   options,
   className,
-  barClassName,
-  strengthLabelClassName,
   hidePasswordIcon,
   showPasswordIcon,
   errorMessages,
@@ -56,7 +50,6 @@ const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputP
     const { value } = event.target;
 
     const result = getPasswordChecklist(value, errorMessages, options);
-    console.log(value, result);
     const newErrors = result.errorMessages || [];
     setErrors(newErrors);
 
@@ -120,4 +113,4 @@ const PasswordStrengthInput =  forwardRef<HTMLDivElement, PasswordStrengthInputP
   );
 });
 
-export default PasswordStrengthInput;
+export default PasswordChecklist;

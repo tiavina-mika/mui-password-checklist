@@ -1,7 +1,7 @@
-import PasswordStrengthInput from './PasswordStrengthInput';
+import PasswordChecklist from './PasswordChecklist';
 
 export {
   type PasswordStrengthInputProps
-} from './PasswordStrengthInput';
+} from './PasswordChecklist';
 
-export default PasswordStrengthInput;
+export default PasswordChecklist;
