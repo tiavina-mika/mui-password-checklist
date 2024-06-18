@@ -80,6 +80,7 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
 
   checks.forEach((check: Checks) => {
     if ((errorMessages as ErrorOption)[check.key]) {
+      // check if the password passes the criteria
       if (check.pass) {
         (errorMessages as ErrorOption)[check.key] = {
           ...(errorMessages as ErrorOption)[check.key],
