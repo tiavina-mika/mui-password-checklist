@@ -1,9 +1,16 @@
 import { Card, CardContent, Container, ThemeProvider, Typography, createTheme } from '@mui/material';
 import PasswordChecklist from 'mui-password-checklist';
+import { ChangeEvent, useState } from 'react';
 
 const theme = createTheme();
 
 const App = () => {
+  const [password, setPassword] = useState<string>('');
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
@@ -14,6 +21,8 @@ const App = () => {
               <Typography>Click on the input field and type a password to see the chack list</Typography>
             </div>
             <PasswordChecklist
+              value={password}
+              onChange={handlePasswordChange}
               // override class name
               className='input'
               // override error messages
@@ -33,9 +42,7 @@ const App = () => {
               fullWidth
             />
           </CardContent>
-
         </Card>
-
       </Container>
     </ThemeProvider>
   )
