@@ -2,7 +2,7 @@
 
 <p align="center">
 
-A <a href="https://mui.com/material-ui/getting-started/overview/">Material-UI</a> password input with password strength indicator.
+A <a href="https://mui.com/material-ui/getting-started/overview/">Material-UI</a> password input with list of password validation steps or conditions that should be fulfilled.
 </p>
 
 
@@ -34,75 +34,50 @@ yarn add @mui/material @emotion/react @emotion/styled
 ## Get started
 
 ### Simple usage
-
 ```tsx
-import PasswordStrengthInput from 'mui-password-checklist';
-import { useState } from "react";
+import PasswordChecklist from 'mui-password-checklist';
+import { useState, ChangeEvent } from "react";
 
 function App() {
+  const [password, setPassword] = useState<string>('');
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  }
+
   return (
-    <PasswordStrengthInput />
+    <PasswordChecklist value={password} onChange={handlePasswordChange} />
   );
 }
 ```
 
-### Custom labels and bar colors
-#### custom all strength options
+### Override
 ```tsx
-    <PasswordStrengthInput
-      options={{
-        tooWeak: {
-          label: 'Too weak 2',
-          color: 'red',
-        },
-        weak: {
-          label: 'Weak 2',
-          color: 'yellow',
-        },
-        medium: {
-          label: 'Medium 2',
-          color: 'green',
-        },
-        strong: {
-          label: 'Strong 2',
-          color: 'blue'
-        },
+    <PasswordChecklist
+      // override class name
+      className='border-1 border-gray-500'
+      // override error messages
+      errorMessages={{
+        minLength: 'Devrait contenir au moins 6 caractères',
+        lowerCase: 'Devrait contenir au moins une lettre minuscule',
+        upperCase: 'Devrait contenir au moins une lettre majuscule',
+        number: 'Devrait contenir au moins un chiffre',
+        specialCharacters: 'Devrait contenir au moins un caractère spécial',
       }}
-    />
-```
-
-#### custom selected strength options
-```tsx
-    <PasswordStrengthInput
+      // override options
       options={{
-        tooWeak: {
-          label: 'Too weak 2',
-          color: 'red',
-        },
-        weak: {
-          label: 'Weak 2',
-        },
-        medium: {
-          color: 'green',
-        },
+        minLength: 6,
+        allowedSpecialChar: "="
       }}
+      // override TextFieldProps
+      fullWidth
     />
-```
-
-### Custom styles
-
-```tsx
-  <PasswordStrengthInput
-    barClassName="!w-[50px]"
-    strengthLabelClassName="!text-xl"
-    className="!w-full
-  />
 ```
 
 ### Custom icons
 
 ```tsx
-  <PasswordStrengthInput
+  <PasswordChecklist
     hidePasswordIcon={<EyeOff />}
     showPasswordIcon={<EyeOn />}
   />
@@ -112,13 +87,13 @@ function App() {
 ### Material-UI TextField props
 
 ```tsx
-  <PasswordStrengthInput
+  <PasswordChecklist
     placeholder="Enter your password"
     // ...other mui TextField props
   />
 ```
 
-See [`example/App.tsx`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for a more example of using `PasswordStrengthInput`.
+See [`example/App.tsx`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for a more example of using `PasswordChecklist`.
 
 ## Props
 
