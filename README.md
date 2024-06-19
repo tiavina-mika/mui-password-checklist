@@ -106,6 +106,7 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 |hidePasswordIcon|`ReactNode`|null|custom icon for hiding the password
 |...otherProps|`TextFieldProps`|null|all mui `TextField` props
 
+## Types
 ### ValidationMessages
 |Name |Type                          | Description |
 |----------------|-------------------------------|-----------------------------
@@ -118,9 +119,9 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 ### CheckPasswordOptions
 
 |Name |Type            |Default value                          | Description |
-|----------------|-------------------------------|-----------------------------
+|----------------|-------------------------------|-------------------------------|-----------------------------
 |minLength|`number`|8|Override the minimum required password length
-|allowedSpecialChar|`string`|!@#$%^&*(),.?\":{}|<>\\[\\]\\\\/`~;'_+=-|Override the allowed special characters
+|allowedSpecialChar|`string`|!@#$%^&*(),.?\":{}<>\\[\\]\\\\/`~;'_+=-|Override the allowed special characters
 ## Contributing
 
 Get started [here](https://github.com/tiavina-mika/mui-password-checklist/blob/main/CONTRIBUTING.md).
