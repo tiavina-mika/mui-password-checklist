@@ -1540,7 +1540,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.1.3"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.5"
-    mui-password-checklist: "npm:^0.2.10"
+    mui-password-checklist: "npm:^0.4.0"
     postcss: "npm:^8.4.38"
     prettier: "npm:^3.2.2"
     react: "npm:^18.2.0"
@@ -4206,9 +4206,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mui-password-checklist@npm:^0.2.10":
-  version: 0.2.10
-  resolution: "mui-password-checklist@npm:0.2.10"
+"mui-password-checklist@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "mui-password-checklist@npm:0.4.0"
   dependencies:
     check-password-complexity: "npm:^1.4.9"
   peerDependencies:
@@ -4216,7 +4216,7 @@ __metadata:
     "@mui/material": ^5.15.2
     react: ^16.8.0 || ^17.0.2 || ^18.2.0
     react-dom: ^16.8.0 || ^17.0.2 || ^18.2.0
-  checksum: 10c0/dfd58319d7ed9bd0e380d0be791082f76e8d0a698642d0d607f939f93a5a67fb6382c38454662b52d516ed05c34267f79b875ba803937dbb36bea9343ef9ad90
+  checksum: 10c0/a1ad1a9069e0b9b9b9d09a0b1689254d9b921ea8a29d9dc93e463ad91bb0f0ae35939176c1e4ed1ee48008172cca0b669375d8c020dac459abaf7c047cc06051
   languageName: node
   linkType: hard
 

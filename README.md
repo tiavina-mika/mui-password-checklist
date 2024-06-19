@@ -95,7 +95,7 @@ function App() {
 See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for more examples that use `PasswordChecklist`.
 
 ## Props
-### PasswordChecklist Props
+
 |Props |Type                          | Default value                         | Description |
 |----------------|-------------------------------|-----------------------------|-----------------------------|
 |options|`CheckPasswordOptions`|null|Options to override colors and labels of each strength
@@ -108,7 +108,8 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 
 ## Types
 
-### ValidationMessages
+#### ValidationMessages
+
 |Name |Type                          | Description |
 |----------------|-------------------------------|-----------------------------
 |minLength|`string`|Message to display for the minimum required password length
@@ -117,13 +118,14 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 |number|`string`|Message to display for the number validation
 |specialCharacters|`string`|Message to display for the required special characters
 
-### CheckPasswordOptions
+#### CheckPasswordOptions
 
 |Name |Type            |Default value                          | Description |
 |----------------|-------------------------------|-------------------------------|-----------------------------
 |minLength|`number`|8|Override the minimum required password length
 |allowedSpecialChar|`string`|!@#$%^&*(),.?\":{}<>\\[\\]\\\\/`~;'_+=-|Override the allowed special characters
 
+<br />
 
 ## Contributing
 
