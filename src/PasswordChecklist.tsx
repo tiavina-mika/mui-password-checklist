@@ -1,35 +1,13 @@
-import { ChangeEvent, ReactNode, forwardRef, useState } from 'react';
+import { ChangeEvent, forwardRef, useState } from 'react';
 
 import { IconButton, TextFieldProps, TextField, Theme, useTheme, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 
 import VisibilityOff from './icons/VisibilityOff';
 import Visibility from './icons/Visibility';
-import { CheckPasswordOptions, getPasswordChecklist } from './utils';
 import Check from './icons/Check';
 import Close from './icons/Close';
-
-export type PasswordsComplexityPass = {
-  pass: boolean;
-  message: string;
-  key?: string;
-};
-
-export type ErrorMessages = {
-  minLength: string;
-  lowerCase: string;
-  upperCase: string;
-  number: string;
-  specialCharacters: string;
-}
-
-export type PasswordStrengthInputProps = {
-  className?: string;
-  options?: CheckPasswordOptions;
-  hidePasswordIcon?: ReactNode;
-  showPasswordIcon?: ReactNode;
-  errorMessages?: ErrorMessages;
-};
-
+import { PasswordStrengthInputProps, PasswordsComplexityPass } from './types';
+import { getPasswordChecklist } from './utils';
 
 const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordStrengthInputProps & TextFieldProps>(({
   options,

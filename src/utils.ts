@@ -1,21 +1,5 @@
-import { ErrorMessages, PasswordsComplexityPass } from "./PasswordChecklist";
-
-export type CheckPasswordOptions = {
-  minLength?: number;
-  allowedSpecialChar?: string;
-};
-
-type DefaultErrorOption = Record<'minLength' | 'lowerCase' | 'upperCase' | 'number', PasswordsComplexityPass>;
-type ErrorOption = DefaultErrorOption & Record<'specialCharacters', PasswordsComplexityPass>;
-
-type Check = {
-  pass: boolean;
-  key: keyof ErrorOption;
-}
-type PasswordCheckList = {
-  errorMessages: PasswordsComplexityPass[];
-  allChecksPassed: boolean;
-}
+import { CheckPasswordOptions } from "check-password-complexity";
+import { Check, DefaultErrorOption, ErrorMessages, ErrorOption, PasswordCheckList } from "./types";
 
 export const getPasswordChecklist = (password: string, message?: ErrorMessages, options?: CheckPasswordOptions): PasswordCheckList => {
   // -------------- default options -------------- //
