@@ -107,6 +107,7 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 |...otherProps|`TextFieldProps`|null|all mui `TextField` props
 
 ## Types
+
 ### ValidationMessages
 |Name |Type                          | Description |
 |----------------|-------------------------------|-----------------------------
@@ -122,6 +123,8 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 |----------------|-------------------------------|-------------------------------|-----------------------------
 |minLength|`number`|8|Override the minimum required password length
 |allowedSpecialChar|`string`|!@#$%^&*(),.?\":{}<>\\[\\]\\\\/`~;'_+=-|Override the allowed special characters
+
+
 ## Contributing
 
 Get started [here](https://github.com/tiavina-mika/mui-password-checklist/blob/main/CONTRIBUTING.md).
