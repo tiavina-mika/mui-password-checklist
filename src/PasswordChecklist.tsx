@@ -57,7 +57,10 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordStrengthInputProps
   };
 
   return (
-    <div>
+    <>
+      {/* ------------------------------------------- */}
+      {/* ---------------- text field --------------- */}
+      {/* ------------------------------------------- */}
       <TextField
         ref={ref}
         {...rest}
@@ -89,13 +92,13 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordStrengthInputProps
           {errors.map((error, index) => (
               <ListItem key={index} sx={{ padding: 0 }}>
                 <ListItemIcon sx={{ minWidth: 24, '& svg': { width: 18 } }}>
-                  {/* ------ icon ------ */}
+                  {/* ------ left icon ------ */}
                   {error.pass
                     ? <Check fill={theme.palette.success.main} />
                     : <Close fill={theme.palette.error.main} />
                   }
                 </ListItemIcon>
-                {/* ------ label ------ */}
+                {/* ------ error message ------ */}
                 <ListItemText
                   sx={{ color: (theme: Theme) => error.pass
                     ? theme.palette.success.main
@@ -109,7 +112,7 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordStrengthInputProps
           )}
         </List>
       )}
-    </div>
+    </>
   );
 });
 

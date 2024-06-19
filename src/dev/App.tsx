@@ -16,6 +16,10 @@ const App = () => {
             number: 'Devrait contenir au moins un chiffre',
             specialCharacters: 'Devrait contenir au moins un caractère spécial',
           }}
+          options={{
+            minLength: 6,
+            allowedSpecialChar: "="
+          }}
         />
       </Container>
     </ThemeProvider>
