@@ -18,16 +18,18 @@ const App = () => {
               className='input'
               // override error messages
               errorMessages={{
-                minLength: 'Devrait contenir au moins 8 caractères',
+                minLength: 'Devrait contenir au moins 6 caractères',
                 lowerCase: 'Devrait contenir au moins une lettre minuscule',
                 upperCase: 'Devrait contenir au moins une lettre majuscule',
                 number: 'Devrait contenir au moins un chiffre',
                 specialCharacters: 'Devrait contenir au moins un caractère spécial',
               }}
+              // override options
               options={{
                 minLength: 6,
                 allowedSpecialChar: "="
               }}
+              // override TextFieldProps
               fullWidth
             />
           </CardContent>
