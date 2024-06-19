@@ -128,3 +128,4 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 ## Contributing
 
 Get started [here](https://github.com/tiavina-mika/mui-password-checklist/blob/main/CONTRIBUTING.md).
+
