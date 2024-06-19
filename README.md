@@ -93,7 +93,7 @@ function App() {
   />
 ```
 
-See [`example/App.tsx`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for a more example of using `PasswordChecklist`.
+See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for more examples that use `PasswordChecklist`.
 
 ## Props
 
