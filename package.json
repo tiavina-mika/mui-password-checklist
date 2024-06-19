@@ -1,7 +1,7 @@
 {
   "name": "mui-password-checklist",
   "version": "0.2.5",
-  "description": "A Material-UI password input with password strength checklist",
+  "description": "A Material-UI password input with list of password validation steps or conditions that should be fulfilled",
   "keywords": [
     "mui",
     "password",
