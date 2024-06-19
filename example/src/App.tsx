@@ -26,7 +26,7 @@ const App = () => {
               // override class name
               className='input'
               // override error messages
-              errorMessages={{
+              validationMessages={{
                 minLength: 'Devrait contenir au moins 6 caractères',
                 lowerCase: 'Devrait contenir au moins une lettre minuscule',
                 upperCase: 'Devrait contenir au moins une lettre majuscule',

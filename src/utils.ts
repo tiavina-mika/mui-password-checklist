@@ -1,7 +1,7 @@
 import { CheckPasswordOptions } from "check-password-complexity";
-import { Check, DefaultErrorOption, ErrorMessages, ErrorOption, PasswordCheckList } from "./types";
+import { Check, DefaultErrorOption, ValidationMessages, ErrorOption, PasswordCheckListResult } from "./types";
 
-export const getPasswordChecklist = (password: string, message?: ErrorMessages, options?: CheckPasswordOptions): PasswordCheckList => {
+export const getPasswordChecklist = (password: string, message?: ValidationMessages, options?: CheckPasswordOptions): PasswordCheckListResult => {
   // -------------- default options -------------- //
   const passwordMinLength = options?.minLength || 8;
   const allowedSpecialChar = options?.allowedSpecialChar || "!@#$%^&*(),.?\":{}|<>\\[\\]\\\\/`~;'_+=-";
@@ -15,7 +15,7 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
     specialCharacters = 'Must contain at least one special character'
   } = message || {};
 
-  if (!password) return { allChecksPassed: false, errorMessages: [] };
+  if (!password) return { allChecksPassed: false, validationMessages: [] };
 
   /**
    * all criteria checks
@@ -43,7 +43,7 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
     },
   ];
 
-  const errorMessages: DefaultErrorOption = {
+  const validationMessages: DefaultErrorOption = {
     minLength: { pass: false, message: minLength },
     lowerCase: { pass: false, message: lowerCase },
     upperCase: { pass: false, message: upperCase },
@@ -57,27 +57,27 @@ export const getPasswordChecklist = (password: string, message?: ErrorMessages, 
       key: "specialCharacters",
     });
 
-    (errorMessages as ErrorOption).specialCharacters = { pass: false, message: specialCharacters };
+    (validationMessages as ErrorOption).specialCharacters = { pass: false, message: specialCharacters };
   }
 
   let allChecksPassed: boolean = false;
 
   checks.forEach((check: Check) => {
-    if ((errorMessages as ErrorOption)[check.key]) {
+    if ((validationMessages as ErrorOption)[check.key]) {
       // check if the password passes the criteria
       if (check.pass) {
-        (errorMessages as ErrorOption)[check.key] = {
-          ...(errorMessages as ErrorOption)[check.key],
+        (validationMessages as ErrorOption)[check.key] = {
+          ...(validationMessages as ErrorOption)[check.key],
           pass: true,
           key: check.key
         };
         allChecksPassed = true;
       } else {
-        (errorMessages as ErrorOption)[check.key] = { ...(errorMessages as ErrorOption)[check.key], key: check.key };
+        (validationMessages as ErrorOption)[check.key] = { ...(validationMessages as ErrorOption)[check.key], key: check.key };
         allChecksPassed = false;
       }
     }
   })
 
-  return { errorMessages: Object.values(errorMessages), allChecksPassed };
+  return { validationMessages: Object.values(validationMessages), allChecksPassed };
 };

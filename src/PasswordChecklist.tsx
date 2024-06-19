@@ -6,15 +6,15 @@ import VisibilityOff from './icons/VisibilityOff';
 import Visibility from './icons/Visibility';
 import Check from './icons/Check';
 import Close from './icons/Close';
-import { PasswordStrengthInputProps, PasswordsComplexityPass } from './types';
+import { PasswordChecklistProps, PasswordsComplexityPass } from './types';
 import { getPasswordChecklist } from './utils';
 
-const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordStrengthInputProps & TextFieldProps>(({
+const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & TextFieldProps>(({
   options,
   className,
   hidePasswordIcon,
   showPasswordIcon,
-  errorMessages,
+  validationMessages,
   ...rest
 }, ref) => {
   const [errors, setErrors] = useState<PasswordsComplexityPass[]>([]);
@@ -27,8 +27,8 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordStrengthInputProps
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    const result = getPasswordChecklist(value, errorMessages, options);
-    const newErrors = result.errorMessages || [];
+    const result = getPasswordChecklist(value, validationMessages, options);
+    const newErrors = result.validationMessages || [];
     setErrors(newErrors);
 
     rest.onChange?.(event);

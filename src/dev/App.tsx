@@ -9,7 +9,7 @@ const App = () => {
       <Container>
         <PasswordChecklist
           className='input'
-          errorMessages={{
+          validationMessages={{
             minLength: 'Devrait contenir au moins 8 caractères',
             lowerCase: 'Devrait contenir au moins une lettre minuscule',
             upperCase: 'Devrait contenir au moins une lettre majuscule',

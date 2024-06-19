@@ -12,8 +12,8 @@ export type Check = {
   pass: boolean;
   key: keyof ErrorOption;
 }
-export type PasswordCheckList = {
-  errorMessages: PasswordsComplexityPass[];
+export type PasswordCheckListResult = {
+  validationMessages: PasswordsComplexityPass[];
   allChecksPassed: boolean;
 }
 
@@ -23,7 +23,7 @@ export type PasswordsComplexityPass = {
   key?: string;
 };
 
-export type ErrorMessages = {
+export type ValidationMessages = {
   minLength: string;
   lowerCase: string;
   upperCase: string;
@@ -31,10 +31,25 @@ export type ErrorMessages = {
   specialCharacters: string;
 }
 
-export type PasswordStrengthInputProps = {
+export type PasswordChecklistProps = {
+  /**
+   * class name for the input field
+   */
   className?: string;
+  /**
+   * custom options for password validation
+   */
   options?: CheckPasswordOptions;
+  /**
+   * custom icon for hiding the password
+   */
   hidePasswordIcon?: ReactNode;
+  /**
+   * custom icon for showing the password
+   */
   showPasswordIcon?: ReactNode;
-  errorMessages?: ErrorMessages;
+  /**
+   * custom validation messages for each password validation
+   */
+  validationMessages?: ValidationMessages;
 };

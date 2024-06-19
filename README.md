@@ -1,7 +1,6 @@
 # mui-password-checklist
 
-<p align="center">
-
+<p align="left">
 A <a href="https://mui.com/material-ui/getting-started/overview/">Material-UI</a> password input with list of password validation steps or conditions that should be fulfilled.
 </p>
 
@@ -57,7 +56,7 @@ function App() {
       // override class name
       className='border-1 border-gray-500'
       // override error messages
-      errorMessages={{
+      validationMessages={{
         minLength: 'Devrait contenir au moins 6 caractères',
         lowerCase: 'Devrait contenir au moins une lettre minuscule',
         upperCase: 'Devrait contenir au moins une lettre majuscule',
@@ -96,17 +95,32 @@ function App() {
 See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for more examples that use `PasswordChecklist`.
 
 ## Props
-
-|props |type                          | Default value                         | Description |
+### PasswordChecklist Props
+|Props |Type                          | Default value                         | Description |
 |----------------|-------------------------------|-----------------------------|-----------------------------|
-|options|`Options`|null|Options to override colors and labels of each strength
+|options|`CheckPasswordOptions`|null|Options to override colors and labels of each strength
 |barClassName|`string`|empty|custom class name of the each bar indicator
-|strengthLabelClassName|`string`|empty|custom class name of the strength label
+|validationMessages|`ValidationMessages`|null| custom validation messages for each password validation
 |className|`string`|empty|custom class name of text input
-|hidePasswordIcon|`ReactNode`|null|custom icon to hide password
-|hidePasswordIcon|`ReactNode`|null|custom icon to show password
+|hidePasswordIcon|`ReactNode`|null|custom icon for showing the password
+|hidePasswordIcon|`ReactNode`|null|custom icon for hiding the password
 |...otherProps|`TextFieldProps`|null|all mui `TextField` props
 
+### ValidationMessages
+|Name |Type                          | Description |
+|----------------|-------------------------------|-----------------------------
+|minLength|`string`|Message to display for the minimum required password length
+|lowerCase|`string`|Message to display for the lowercase validation
+|upperCase|`string`|Message to display for the uppercase validation
+|number|`string`|Message to display for the number validation
+|specialCharacters|`string`|Message to display for the required special characters
+
+### CheckPasswordOptions
+
+|Name |Type            |Default value                          | Description |
+|----------------|-------------------------------|-----------------------------
+|minLength|`number`|8|Override the minimum required password length
+|allowedSpecialChar|`string`|!@#$%^&*(),.?\":{}|<>\\[\\]\\\\/`~;'_+=-|Override the allowed special characters
 ## Contributing
 
 Get started [here](https://github.com/tiavina-mika/mui-password-checklist/blob/main/CONTRIBUTING.md).
