@@ -1,6 +1,6 @@
 // import {describe, expect, test} from '@jest/globals';
 
-import { getPasswordChecklist } from "../utils";
+import { getPasswordChecklist } from "../src/utils";
 
 // ------------ default options ------------ //
 describe('check password', () => {
