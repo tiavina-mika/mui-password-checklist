@@ -1,5 +1,5 @@
 import { Container, ThemeProvider, Typography, createTheme } from '@mui/material';
-import PasswordStrengthInput from 'mui-password-strength-input';
+import PasswordStrengthInput from 'mui-password-checklist';
 
 const theme = createTheme();
 
@@ -8,7 +8,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Container>
         <div className="flex flex-col gap-2 mb-16 mt-2">
-          <Typography variant="h5">mui-password-strength-input</Typography>
+          <Typography variant="h5">mui-password-checklist</Typography>
           <Typography>Click on the input field and type a password to see the strength indicator</Typography>
         </div>
         <PasswordStrengthInput
