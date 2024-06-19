@@ -1,40 +1,39 @@
-import { Container, ThemeProvider, Typography, createTheme } from '@mui/material';
-import PasswordStrengthInput from 'mui-password-checklist';
+import { Card, CardContent, Container, ThemeProvider, Typography, createTheme } from '@mui/material';
+import PasswordChecklist from 'mui-password-checklist';
 
 const theme = createTheme();
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <div className="flex flex-col gap-2 mb-16 mt-2">
-          <Typography variant="h5">mui-password-checklist</Typography>
-          <Typography>Click on the input field and type a password to see the strength indicator</Typography>
-        </div>
-        <PasswordStrengthInput
-          placeholder="Enter your password"
-          barClassName="!w-[50px]"
-          strengthLabelClassName="!text-xl"
-          className="!w-full !border-1 !border !b-green-500"
-          options={{
-            tooWeak: {
-              label: 'Too weak 2',
-              color: 'red',
-            },
-            weak: {
-              label: 'Weak 2',
-              color: 'yellow',
-            },
-            medium: {
-              label: 'Medium 2',
-              color: 'green',
-            },
-            strong: {
-              label: 'Strong 2',
-              color: 'blue'
-            },
-          }}
-        />
+      <Container sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
+        <Card sx={{ maxWidth: 400, pb: 2 }}>
+          <CardContent >
+            <div className="flex flex-col gap-2 mb-16 mt-2">
+              <Typography variant="h5">mui-password-checklist</Typography>
+              <Typography>Click on the input field and type a password to see the chack list</Typography>
+            </div>
+            <PasswordChecklist
+              // override class name
+              className='input'
+              // override error messages
+              errorMessages={{
+                minLength: 'Devrait contenir au moins 8 caractères',
+                lowerCase: 'Devrait contenir au moins une lettre minuscule',
+                upperCase: 'Devrait contenir au moins une lettre majuscule',
+                number: 'Devrait contenir au moins un chiffre',
+                specialCharacters: 'Devrait contenir au moins un caractère spécial',
+              }}
+              options={{
+                minLength: 6,
+                allowedSpecialChar: "="
+              }}
+              fullWidth
+            />
+          </CardContent>
+
+        </Card>
+
       </Container>
     </ThemeProvider>
   )
