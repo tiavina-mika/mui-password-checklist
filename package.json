@@ -69,9 +69,7 @@
     "test:watch": "jest watch",
     "test:coverage": "jest --coverage"
   },
-  "dependencies": {
-    "check-password-complexity": "^1.4.9"
-  },
+
   "peerDependencies": {
     "@emotion/react": "^11.11.3",
     "@mui/material": "^5.15.2",

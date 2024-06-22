@@ -1,5 +1,4 @@
-import { CheckPasswordOptions } from "check-password-complexity";
-import { Check, DefaultErrorOption, ValidationMessages, ErrorOption, PasswordCheckListResult } from "./types";
+import { Check, DefaultErrorOption, ValidationMessages, ErrorOption, PasswordCheckListResult, CheckPasswordOptions } from "./types";
 
 export const getPasswordChecklist = (password: string, message?: ValidationMessages, options?: CheckPasswordOptions): PasswordCheckListResult => {
   // -------------- default options -------------- //
