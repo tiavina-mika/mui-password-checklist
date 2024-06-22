@@ -104,13 +104,12 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 
 |Props |Type                          | Default value                         | Description |
 |----------------|-------------------------------|-----------------------------|-----------------------------|
-|options|`CheckPasswordOptions`|null|Options to override colors and labels of each strength
-|barClassName|`string`|empty|custom class name of the each bar indicator
-|validationMessages|`ValidationMessages`|null| custom validation messages for each password validation
-|className|`string`|empty|custom class name of text input
-|hidePasswordIcon|`ReactNode`|null|custom icon for showing the password
-|hidePasswordIcon|`ReactNode`|null|custom icon for hiding the password
-|...otherProps|`TextFieldProps`|null|all mui `TextField` props
+|options|`CheckPasswordOptions`|null|Override colors and labels of each strength
+|validationMessages|`ValidationMessages`|null| Override each password validation massages
+|className|`string`|empty|TextField class name
+|hidePasswordIcon|`ReactNode`|null|Custom icon for showing the password
+|hidePasswordIcon|`ReactNode`|null|Custom icon for hiding the password
+|...otherProps|`TextFieldProps`|null|All Material UI `TextField` props
 
 ## Types
 
