@@ -6,8 +6,8 @@ import VisibilityOff from './icons/VisibilityOff';
 import Visibility from './icons/Visibility';
 import Check from './icons/Check';
 import Close from './icons/Close';
-import { PasswordChecklistProps, PasswordsComplexityPass } from './types';
-import { getPasswordChecklist } from './utils';
+import { PasswordChecklistProps } from './types';
+import { validatePasswordChecklist, PasswordCheckListResult } from 'validate-password-checklist';
 
 const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & TextFieldProps>(({
   options,
@@ -17,7 +17,7 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & T
   validationMessages,
   ...rest
 }, ref) => {
-  const [errors, setErrors] = useState<PasswordsComplexityPass[]>([]);
+  const [rules, setRules] = useState<PasswordCheckListResult['validationMessages']>([]);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const theme = useTheme();
@@ -27,9 +27,9 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & T
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    const result = getPasswordChecklist(value, validationMessages, options);
+    const result = validatePasswordChecklist(value, validationMessages, options);
     const newErrors = result.validationMessages || [];
-    setErrors(newErrors);
+    setRules(newErrors);
 
     rest.onChange?.(event);
   };
@@ -65,20 +65,20 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & T
       {/* ------------------------------------------- */}
       {/* ------ password requirement checklist ----- */}
       {/* ------------------------------------------- */}
-      {errors.length > 0 && (
+      {rules.length > 0 && (
         <List sx={{ p: 0, mt: 1 }}>
-          {errors.map((error, index) => (
+          {rules.map((error, index) => (
               <ListItem key={index} sx={{ padding: 0 }}>
                 <ListItemIcon sx={{ minWidth: 24, '& svg': { width: 18 } }}>
                   {/* ------ left icon ------ */}
-                  {error.pass
+                  {error.passed
                     ? <Check fill={theme.palette.success.main} />
                     : <Close fill={theme.palette.error.main} />
                   }
                 </ListItemIcon>
                 {/* ------ error message ------ */}
                 <ListItemText
-                  sx={{ color: (theme: Theme) => error.pass
+                  sx={{ color: (theme: Theme) => error.passed
                     ? theme.palette.success.main
                     : theme.palette.error.main
                   }}

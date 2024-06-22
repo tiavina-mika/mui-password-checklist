@@ -3277,16 +3277,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"check-password-complexity@npm:^1.4.9":
-  version: 1.4.9
-  resolution: "check-password-complexity@npm:1.4.9"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.2 || ^18.2.0
-    react-dom: ^16.8.0 || ^17.0.2 || ^18.2.0
-  checksum: 10c0/1567222f66e60b62e9390b9b9cf3737fd36deb9487c1b1cafd4bf9985f28d3882291d50e3b15029e00fe101560dafc12639ad24e100e1db45469b25fe18a3d96
-  languageName: node
-  linkType: hard
-
 "cheerio-select@npm:^2.1.0":
   version: 2.1.0
   resolution: "cheerio-select@npm:2.1.0"
@@ -6930,7 +6920,6 @@ __metadata:
     "@typescript-eslint/parser": "npm:^6.20.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
     babel-plugin-module-resolver: "npm:^5.0.0"
-    check-password-complexity: "npm:^1.4.9"
     copyfiles: "npm:^2.4.1"
     cspell: "npm:^6.31.1"
     eslint: "npm:^8.56.0"
@@ -6954,6 +6943,7 @@ __metadata:
     ts-add-js-extension: "npm:^1.6.4"
     ts-jest: "npm:^29.1.4"
     typescript: "npm:^5.2.2"
+    validate-password-checklist: "npm:^0.1.2"
     vite: "npm:5.0.8"
     vite-tsconfig-paths: "npm:^4.3.1"
   peerDependencies:
@@ -8787,6 +8777,18 @@ __metadata:
     "@types/istanbul-lib-coverage": "npm:^2.0.1"
     convert-source-map: "npm:^2.0.0"
   checksum: 10c0/e691ba4dd0dea4a884e52c37dbda30cce6f9eeafe9b26721e449429c6bb0f4b6d1e33fabe7711d0f67f7a34c3bfd56c873f7375bba0b1534e6a2843ce99550e5
+  languageName: node
+  linkType: hard
+
+"validate-password-checklist@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "validate-password-checklist@npm:0.1.2"
+  peerDependencies:
+    "@emotion/react": ^11.11.3
+    "@mui/material": ^5.15.2
+    react: ^16.8.0 || ^17.0.2 || ^18.2.0
+    react-dom: ^16.8.0 || ^17.0.2 || ^18.2.0
+  checksum: 10c0/8ae7ee5b102ba89b95b6f9093f18e0f6528e0877b27a8e4dd0a875d555912d12701e24c2d894653ffc16b742371ec5f86e70c66f8b471b972cca4c26231bcdc4
   languageName: node
   linkType: hard
 
