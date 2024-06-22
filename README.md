@@ -4,6 +4,12 @@
 A <a href="https://mui.com/material-ui/getting-started/overview/">Material-UI</a> password input with list of password validation steps or conditions that should be fulfilled.
 </p>
 
+## Demo
+
+- **[CodeSandbox demo](https://codesandbox.io/s/github/tiavina-mika/mui-password-checklist-demo)**
+- **[Live demo](https://mui-password-checklist.netlify.app/)**
+
+<br />
 
 ![Gif](https://github.com/tiavina-mika/mui-password-checklist/blob/main/screenshots/example.gif)
 
@@ -130,4 +136,3 @@ See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/ex
 ## Contributing
 
 Get started [here](https://github.com/tiavina-mika/mui-password-checklist/blob/main/CONTRIBUTING.md).
-
