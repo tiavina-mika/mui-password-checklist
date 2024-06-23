@@ -114,7 +114,6 @@ const schema = z.object({
     const { allChecksPassed } = validatePasswordChecklist(value);
     // no need to trigger the error if the password rules are met
     if (allChecksPassed) return;
-
     ctx.addIssue({
       code: "custom",
       message: "Should contain at least 8 characters, one lowercase, one uppercase, one number, and one special character",
@@ -124,43 +123,34 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const SignUpForm = () => {
+export default function SignUpForm() {
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
 
-  const { handleSubmit, control, formState  } = form;
-
-  const handleFormSubmit: SubmitHandler<FormValues> = async values => {
-    console.log('values: ', values);
-  };
+  const handleFormSubmit: SubmitHandler<FormValues> = async values => console.log('values: ', values);
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)}>
         <Controller
           name="password"
-          control={control}
+          control={form.control}
           defaultValue=""
           render={({ field }) => (
             <PasswordChecklist
               {...field}
-              error={Boolean(formState?.errors?.password)}
+              error={Boolean(form.formState?.errors?.password)}
               // display the error message only if the error is not a custom one
-              helperText={formState?.errors?.password?.type !== 'custom' ? formState?.errors?.password?.message : ''}
+              helperText={form.formState?.errors?.password?.type !== 'custom' ? form.formState?.errors?.password?.message : ''}
             />
           )}
         />
-        <button type="submit">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
     </FormProvider>
   );
 };
-
-export default SignUpForm;
-
 ```
 
 See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for more examples that use `PasswordChecklist`.
