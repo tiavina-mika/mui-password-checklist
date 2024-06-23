@@ -98,6 +98,64 @@ function App() {
   />
 ```
 
+### Using it with Zod and React Hook Form
+Use the `validatePasswordChecklist` function to check if all rules are respected.
+
+```tsx
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm, FormProvider, Controller } from 'react-hook-form';
+import z from 'zod';
+import PasswordChecklist, { validatePasswordChecklist } from 'mui-password-checklist';
+
+const schema = z.object({
+  password: z.string()
+  .max(64, "Should not exceed 64 characters")
+  .superRefine((value: string, ctx: any) => {
+    const { allChecksPassed } = validatePasswordChecklist(value);
+    // no need to trigger the error if the password rules are met
+    if (allChecksPassed) return;
+    ctx.addIssue({
+      code: "custom",
+      message: "Should contain at least 8 characters, one lowercase, one uppercase, one number, and one special character",
+    });
+  })
+});
+
+type FormValues = z.infer<typeof schema>;
+
+const SignUpForm = () => {
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+  });
+
+  const handleFormSubmit: SubmitHandler<FormValues> = async values => console.log('values: ', values);
+
+  return (
+    <FormProvider {...form}>
+      <form onSubmit={form.handleSubmit(handleFormSubmit)}>
+        <Controller
+          name="password"
+          control={form.control}
+          defaultValue=""
+          render={({ field }) => (
+            <PasswordChecklist
+              {...field}
+              error={Boolean(form.formState?.errors?.password)}
+              // display the error message only if the error is not a custom one
+              helperText={form.formState?.errors?.password?.type !== 'custom' ? form.formState?.errors?.password?.message : ''}
+            />
+          )}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </FormProvider>
+  );
+};
+
+export default SignUpForm;
+
+```
+
 See [`here`](https://github.com/tiavina-mika/mui-password-checklist/tree/main/example) for more examples that use `PasswordChecklist`.
 
 ## Props
