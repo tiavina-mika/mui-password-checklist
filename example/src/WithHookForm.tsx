@@ -8,32 +8,36 @@ import PasswordChecklist, { validatePasswordChecklist } from 'mui-password-check
 
 const schema = z.object({
   password: z.string()
+  // the following line is commented out because the PasswordChecklist component already checks for the password length
+  // .min(8, "Should contain at least 8 characters")
+  .max(64, "Should not exceed 64 characters")
   .superRefine((value: string, ctx: any) => {
     const { allChecksPassed } = validatePasswordChecklist(value);
     // no need to trigger the error if the password rules are met
     if (allChecksPassed) return;
     ctx.addIssue({
       code: "custom",
+      // maybe this message should not be displayed to the user
       message: "Should contain at least 8 characters, one lowercase, one uppercase, one number, and one special character",
     });
   })
 });
 
-type Input = z.infer<typeof schema>;
+type FormValues = z.infer<typeof schema>;
 
 const WithHookForm = () => {
-  const [values, setValues] = useState<Input | null>(null);
+  const [values, setValues] = useState<FormValues | null>(null);
   console.log('values: ', values);
 
-  const form = useForm<Input>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { password: '' }
-
   });
 
   const { handleSubmit, control, formState  } = form;
+  console.log('formState?.errors?.password?.message: ', formState?.errors?.password);
 
-  const handleFormSubmit: SubmitHandler<Input> = async values => {
+  const handleFormSubmit: SubmitHandler<FormValues> = async values => {
     setValues(values);
   };
 
@@ -55,6 +59,8 @@ const WithHookForm = () => {
                     fullWidth
                     placeholder="Enter your password"
                     error={Boolean(formState?.errors?.password)}
+                    // display the error message only if the error is not a custom one
+                    helperText={formState?.errors?.password?.type !== 'custom' ? formState?.errors?.password?.message : ''}
                   />
                 )}
               />
