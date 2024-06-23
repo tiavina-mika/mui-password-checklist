@@ -1550,7 +1550,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.1.3"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.5"
-    mui-password-checklist: "npm:^0.5.2"
+    mui-password-checklist: "npm:^0.7.0"
     postcss: "npm:^8.4.38"
     prettier: "npm:^3.2.2"
     react: "npm:^18.2.0"
@@ -1913,16 +1913,6 @@ __metadata:
     ansi-styles: "npm:^4.1.0"
     supports-color: "npm:^7.1.0"
   checksum: 10c0/4a3fef5cc34975c898ffe77141450f679721df9dde00f6c304353fa9c8b571929123b26a0e4617bde5018977eb655b31970c297b91b63ee83bb82aeb04666880
-  languageName: node
-  linkType: hard
-
-"check-password-complexity@npm:^1.4.9":
-  version: 1.4.9
-  resolution: "check-password-complexity@npm:1.4.9"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.2 || ^18.2.0
-    react-dom: ^16.8.0 || ^17.0.2 || ^18.2.0
-  checksum: 10c0/1567222f66e60b62e9390b9b9cf3737fd36deb9487c1b1cafd4bf9985f28d3882291d50e3b15029e00fe101560dafc12639ad24e100e1db45469b25fe18a3d96
   languageName: node
   linkType: hard
 
@@ -4218,17 +4208,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mui-password-checklist@npm:^0.5.2":
-  version: 0.5.2
-  resolution: "mui-password-checklist@npm:0.5.2"
+"mui-password-checklist@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "mui-password-checklist@npm:0.7.0"
   dependencies:
-    check-password-complexity: "npm:^1.4.9"
+    validate-password-checklist: "npm:^0.1.2"
   peerDependencies:
     "@emotion/react": ^11.11.3
     "@mui/material": ^5.15.2
     react: ^16.8.0 || ^17.0.2 || ^18.2.0
     react-dom: ^16.8.0 || ^17.0.2 || ^18.2.0
-  checksum: 10c0/bdc50ab6013f38f37a91774f44588600b43ea517c44d083a20fb29cecb07e6f6b916120e99146a1e1cef968ee12bcbaae124479da8994ad7ceb65ea6b028cc1c
+  checksum: 10c0/48db9017ca6c268ac73ba7b56c4f118c16aad63247451dfc399c8814aa1588c0088cba6c05aec96285576404e9d3347055f37b7434eae7fcf3fc45b10ea1dc94
   languageName: node
   linkType: hard
 
@@ -5689,6 +5679,18 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 10c0/41a5bdd214df2f6c3ecf8622745e4a366c4adced864bc3c833739791aeeeb1838119af7daed4ba36428114b5c67dcda034a79c882e97e43c03e66a4dd7389942
+  languageName: node
+  linkType: hard
+
+"validate-password-checklist@npm:^0.1.2":
+  version: 0.1.13
+  resolution: "validate-password-checklist@npm:0.1.13"
+  peerDependencies:
+    "@emotion/react": ^11.11.3
+    "@mui/material": ^5.15.2
+    react: ^16.8.0 || ^17.0.2 || ^18.2.0
+    react-dom: ^16.8.0 || ^17.0.2 || ^18.2.0
+  checksum: 10c0/fbcf2ddafdc60b300fd3c014580c6371714b7b5b5ca149a73f18e8f4184319ecad0a4cc61de5d83d6c190f95e034038fc289ebe67148e11cf25354c7ea0bab71
   languageName: node
   linkType: hard
 

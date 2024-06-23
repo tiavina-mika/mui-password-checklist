@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
-    "mui-password-checklist": "^0.5.2",
+    "mui-password-checklist": "^0.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.0",

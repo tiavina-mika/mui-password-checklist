@@ -4,10 +4,19 @@ import { SubmitHandler, useForm, FormProvider, Controller } from 'react-hook-for
 import z from 'zod';
 import { Button, Stack } from '@mui/material';
 import { useState } from 'react';
-import PasswordChecklist from 'mui-password-checklist';
+import PasswordChecklist, { validatePasswordChecklist } from 'mui-password-checklist';
 
 const schema = z.object({
-  password: z.string(),
+  password: z.string()
+  .superRefine((value: string, ctx: any) => {
+    const { allChecksPassed } = validatePasswordChecklist(value);
+    // no need to trigger the error if the password rules are met
+    if (allChecksPassed) return;
+    ctx.addIssue({
+      code: "custom",
+      message: "Should contain at least 8 characters, one lowercase, one uppercase, one number, and one special character",
+    });
+  })
 });
 
 type Input = z.infer<typeof schema>;
@@ -22,8 +31,7 @@ const WithHookForm = () => {
 
   });
 
-  const { handleSubmit, control } = form;
-
+  const { handleSubmit, control, formState  } = form;
 
   const handleFormSubmit: SubmitHandler<Input> = async values => {
     setValues(values);
@@ -35,6 +43,7 @@ const WithHookForm = () => {
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(handleFormSubmit)}>
           <Stack spacing={2}>
+            {/* password input */}
             <Controller
                 name="password"
                 control={control}
@@ -42,19 +51,20 @@ const WithHookForm = () => {
                 render={({ field }) => (
                   <PasswordChecklist
                     {...field}
-                    label="Content"
+                    label="Password"
+                    fullWidth
+                    placeholder="Enter your password"
+                    error={Boolean(formState?.errors?.password)}
                   />
                 )}
               />
-              {/* buttons */}
-              <Stack direction="row" spacing={3}>
-                <Button
-                  variant="contained"
-                  type="submit"
-                >
-                  Submit
-                </Button>
-            </Stack>
+              {/* button */}
+              <Button
+                variant="contained"
+                type="submit"
+              >
+                Submit
+              </Button>
           </Stack>
         </form>
       </FormProvider>
