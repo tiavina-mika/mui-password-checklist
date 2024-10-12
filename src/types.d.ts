@@ -1,8 +1,14 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type CheckPasswordOptions = {
   minLength?: number;
   allowedSpecialChar?: string;
+};
+
+export type PasswordsComplexityPass = {
+  pass: boolean;
+  message: string;
+  key?: string;
 };
 
 type DefaultErrorOption = Record<'minLength' | 'lowerCase' | 'upperCase' | 'number', PasswordsComplexityPass>;
@@ -11,16 +17,10 @@ type ErrorOption = DefaultErrorOption & Record<'specialCharacters', PasswordsCom
 export type Check = {
   pass: boolean;
   key: keyof ErrorOption;
-}
+};
 export type PasswordCheckListResult = {
   validationMessages: PasswordsComplexityPass[];
   allChecksPassed: boolean;
-}
-
-export type PasswordsComplexityPass = {
-  pass: boolean;
-  message: string;
-  key?: string;
 };
 
 export type ValidationMessages = {
@@ -29,7 +29,7 @@ export type ValidationMessages = {
   upperCase: string;
   number: string;
   specialCharacters: string;
-}
+};
 
 export type PasswordChecklistProps = {
   /**

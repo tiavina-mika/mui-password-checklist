@@ -1,6 +1,8 @@
 import { ChangeEvent, forwardRef, useState } from 'react';
 
-import { IconButton, TextFieldProps, TextField, Theme, useTheme, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+  IconButton, TextFieldProps, TextField, Theme, useTheme, List, ListItem, ListItemIcon, ListItemText,
+} from '@mui/material';
 
 import VisibilityOff from './icons/VisibilityOff';
 import Visibility from './icons/Visibility';
@@ -9,7 +11,7 @@ import Close from './icons/Close';
 import { PasswordChecklistProps } from './types';
 import { validatePasswordChecklist, PasswordCheckListResult } from 'validate-password-checklist';
 
-const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & TextFieldProps>(({
+const PasswordChecklist = forwardRef<HTMLDivElement, PasswordChecklistProps & TextFieldProps>(({
   options,
   className,
   hidePasswordIcon,
@@ -18,17 +20,18 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & T
   ...rest
 }, ref) => {
   const [rules, setRules] = useState<PasswordCheckListResult['validationMessages']>([]);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
   const theme = useTheme();
 
-  const toggleShowPassword = () => setShowPassword(!showPassword);
+  const toggleShowPassword = () => setIsPasswordVisible(!isPasswordVisible);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
     const result = validatePasswordChecklist(value, validationMessages, options);
     const newErrors = result.validationMessages || [];
+
     setRules(newErrors);
 
     rest.onChange?.(event);
@@ -43,23 +46,22 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & T
         ref={ref}
         {...rest}
         className={className}
-        type={showPassword ? 'text' : 'password'}
-        onChange={handleChange}
+        type={isPasswordVisible ? 'text' : 'password'}
         InputProps={{
           endAdornment: (
             <IconButton
               aria-label="toggle password visibility"
-              onClick={toggleShowPassword}
               edge="end"
+              onClick={toggleShowPassword}
             >
               {/* toggle eye icon */}
-              {showPassword
+              {isPasswordVisible
                 ? (hidePasswordIcon || <VisibilityOff />)
-                : (showPasswordIcon || <Visibility />)
-              }
+                : (showPasswordIcon || <Visibility />)}
             </IconButton>
           ),
         }}
+        onChange={handleChange}
       />
 
       {/* ------------------------------------------- */}
@@ -68,25 +70,25 @@ const PasswordChecklist =  forwardRef<HTMLDivElement, PasswordChecklistProps & T
       {rules.length > 0 && (
         <List sx={{ p: 0, mt: 1 }}>
           {rules.map((error, index) => (
-              <ListItem key={index} sx={{ padding: 0 }}>
-                <ListItemIcon sx={{ minWidth: 24, '& svg': { width: 18 } }}>
-                  {/* ------ left icon ------ */}
-                  {error.passed
-                    ? <Check fill={theme.palette.success.main} />
-                    : <Close fill={theme.palette.error.main} />
-                  }
-                </ListItemIcon>
-                {/* ------ error message ------ */}
-                <ListItemText
-                  sx={{ color: (theme: Theme) => error.passed
+            <ListItem key={index} sx={{ padding: 0 }}>
+              <ListItemIcon sx={{ minWidth: 24, '& svg': { width: 18 } }}>
+                {/* ------ left icon ------ */}
+                {error.passed
+                  ? <Check fill={theme.palette.success.main} />
+                  : <Close fill={theme.palette.error.main} />}
+              </ListItemIcon>
+              {/* ------ error message ------ */}
+              <ListItemText
+                sx={{
+                  color: (theme: Theme) => error.passed
                     ? theme.palette.success.main
-                    : theme.palette.error.main
-                  }}
-                >
-                  {error.message}
-                </ListItemText>
-              </ListItem>
-            )
+                    : theme.palette.error.main,
+                }}
+              >
+                {error.message}
+              </ListItemText>
+            </ListItem>
+          )
           )}
         </List>
       )}

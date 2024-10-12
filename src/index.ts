@@ -2,12 +2,12 @@ import PasswordChecklist from './PasswordChecklist';
 import { validatePasswordChecklist, PasswordCheckListResult } from 'validate-password-checklist';
 
 export {
-  type PasswordChecklistProps
+  type PasswordChecklistProps,
 } from './types.d';
 
 export {
   validatePasswordChecklist,
-  type PasswordCheckListResult
-}
+  type PasswordCheckListResult,
+};
 
 export default PasswordChecklist;
